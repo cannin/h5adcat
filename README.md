@@ -1,6 +1,6 @@
 # Introduction
 
-** NOT WORKING ** 
+**NOT WORKING** 
 
 Command-line tool to see basic properties of H5AD files in the terminal; uses scanpy
 
