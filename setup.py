@@ -41,7 +41,7 @@ setup(
     zip_safe=False,
     install_requires=DEPENDENCIES,
     #test_suite="tests.test_project",
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     # license and classifier list:
     # https://pypi.org/pypi?%3Aaction=list_classifiers
     license="License :: OSI Approved :: Apache Software License",
