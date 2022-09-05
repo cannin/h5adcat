@@ -37,7 +37,7 @@ setup(
     include_package_data=True,
     keywords=[],
     scripts=[],
-    entry_points={"console_scripts": ["h5adcat=h5adcat:main"]},
+    entry_points={"console_scripts": ["h5adcat=h5adcat.__main__:main"]},
     zip_safe=False,
     install_requires=DEPENDENCIES,
     #test_suite="tests.test_project",
