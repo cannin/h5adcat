@@ -8,7 +8,7 @@ def main():
     try:
         arg1 = sys.argv[1]
     except IndexError:
-        print "Usage: h5adcat H5AD_FILE"
+        print("Usage: h5adcat H5AD_FILE")
         sys.exit(1)
 
     if "--version" in sys.argv[1:]:
