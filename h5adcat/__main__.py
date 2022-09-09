@@ -5,7 +5,7 @@ import pandas as pd
 import scipy.sparse as sp
 from h5adcat import __version__
 
-__version_str__ = "h5adcat: " + __version__
+__version_str__ = str(sc.logging.print_versions()) + "h5adcat: " + __version__
 
 
 def write_mtx(adata):
