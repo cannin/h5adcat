@@ -55,12 +55,11 @@ def main():
 
     parser.add_argument('file', help='Input .h5ad File')
     parser.add_argument('-v', '--version', action='version', version=__version_str__)
-    parser.add_argument('-m', '--mtx', default=False, action='store_true', help='Convert to MTX')
-    parser.add_argument('-d', '--data', default=False, action='store_true', help='Show Limited Data')
-    #parser.add_argument('-s', '--session_info', default=False, action='store_true', help='Show Session Information')
+    parser.add_argument('-m', '--mtx', default=False, action='store_true', help='convert to sparse matrix format (MTX)')
+    parser.add_argument('-d', '--data', default=False, action='store_true', help='show limited data rows')
     #parser.add_argument('-s', '--summary', default=False, action='store_true', help='Show Summary')
 
-    #parser.add_argument('-q', '--qc', default=False, action='store_true', help='Make QC Plots')
+    parser.add_argument('-q', '--qc', default=False, action='store_true', help='make quality control plots')
     #parser.add_argument('-c', '--count_col', default='ncounts', help='N Count Column')
     #parser.add_argument('-g', '--gene_col', default='ngenes', help='N Genes Column')
     #parser.add_argument('-p', '--percent_mito_col', default='percent_mito', help='Percent Mitochondrion Column')
@@ -82,12 +81,6 @@ def main():
     if args.mtx:
         write_mtx(adata)
 
-    # if args.qc:
-    #     sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".pdf") 
-    #     sc.pl.violin(adata, [args.gene_col, args.count_col, args.percent_mito_col], jitter=0.4, multi_panel=True, show=False, save=".pdf")
-    #     sc.pl.scatter(adata, x=args.count_col, y=args.percent_mito_col, show=False, save=".pdf")
-    #     sc.pl.scatter(adata, x=args.count_col, y=args.gene_col, show=False, save=".pdf")
-
     if args.data: 
         print("X Head:\n")
         print(pd.DataFrame.sparse.from_spmatrix(adata.X).head(5))
@@ -97,6 +90,12 @@ def main():
 
         print("\nvar Head:\n")
         print(adata.var.head(5))
+
+    if args.qc:
+        sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".png") 
+        # sc.pl.violin(adata, [args.gene_col, args.count_col, args.percent_mito_col], jitter=0.4, multi_panel=True, show=False, save=".pdf")
+        # sc.pl.scatter(adata, x=args.count_col, y=args.percent_mito_col, show=False, save=".pdf")
+        # sc.pl.scatter(adata, x=args.count_col, y=args.gene_col, show=False, save=".pdf")
 
 
 if __name__ == "__main__":
