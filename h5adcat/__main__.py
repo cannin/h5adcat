@@ -4,7 +4,7 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 
-__version__ = "0.0.18"
+__version__ = "0.0.19"
 
 
 # def write_mtx(adata):
@@ -77,7 +77,7 @@ def main():
     
     # Display basic information
     if not args.mtx and not args.qc:
-    print(str(adata) + "\n")
+        print(str(adata) + "\n")
 
     # if args.mtx:
     #     write_mtx(adata)
