@@ -6,6 +6,7 @@ import io
 import re
 import os
 from setuptools import find_packages, setup
+from h5adcat import __version__
 
 DEPENDENCIES = ['scanpy==1.9.1']
 EXCLUDE_FROM_PACKAGES = ["contrib", "docs", "test*"]
@@ -15,21 +16,11 @@ with io.open(os.path.join(CURDIR, "README.md"), "r", encoding="utf-8") as f:
     README = f.read()
 
 
-def get_version():
-    main_file = os.path.join(CURDIR, "h5adcat", "__main__.py")
-    _version_re = re.compile(r"__version__\s+=\s+(?P<version>.*)")
-    with open(main_file, "r", encoding="utf8") as f:
-        match = _version_re.search(f.read())
-        version = match.group("version") if match is not None else '"unknown"'
-    return str(ast.literal_eval(version))
-
-
 setup(
     name="h5adcat",
-    version=get_version(),
+    version=__version__,
     author="cannin",
-    author_email="TBA",
-    description="",
+    description="Basic Information for .h5ad Files and Conversion to MTX",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/cannin/h5adcat",

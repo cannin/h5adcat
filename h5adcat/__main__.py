@@ -3,8 +3,9 @@ import argparse
 import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
+from h5adcat import __version__
 
-__version__ = "0.0.25"
+__version_str__ = "h5adcat: " + __version__ + "\n\nDependencies: " str(sc.logging.print_versions())
 
 
 def write_mtx(adata):
@@ -14,7 +15,7 @@ def write_mtx(adata):
         + adata : AnnData
         An AnnData object
 
-        From: https://github.com/ebi-gene-expression-group/scanpy-scripts/blob/e53693336d8b37f0231d10d672b49c766d9c325b/scanpy_scripts/cmd_utils.py
+        Simplification From: https://github.com/ebi-gene-expression-group/scanpy-scripts/blob/develop/scanpy_scripts/cmd_utils.py
     """
     mat = sp.coo_matrix(adata.X)
 
@@ -44,10 +45,10 @@ def write_mtx(adata):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Basic Information for .h5ad Files")
+    parser = argparse.ArgumentParser(description="Basic Information for .h5ad Files and Conversion to MTX")
 
     parser.add_argument('file', help='Input .h5ad File')
-    parser.add_argument('-v', '--version', default=False, action='store_true', help='Show Version')
+    parser.add_argument('-v', '--version', action='version', version=__version_str__)
     parser.add_argument('-m', '--mtx', default=False, action='store_true', help='Convert to MTX')
     parser.add_argument('-d', '--data', default=False, action='store_true', help='Show Limited Data')
     #parser.add_argument('-s', '--summary', default=False, action='store_true', help='Show Summary')
@@ -62,15 +63,6 @@ def main():
         sys.exit(0)
 
     args = parser.parse_args()
-
-    if args.version:
-        print("h5adcat: " + __version__ + "\n\nDependencies: ")
-        print(sc.logging.print_versions())
-        sys.exit(0)
-
-    # if args.help:
-    #     parser.print_help()
-    #     sys.exit(0)
 
     file = args.file
 
