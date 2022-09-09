@@ -92,7 +92,7 @@ def main():
         print(adata.var.head(5))
 
     if args.qc:
-        sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".png") 
+        sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".svg") 
         # sc.pl.violin(adata, [args.gene_col, args.count_col, args.percent_mito_col], jitter=0.4, multi_panel=True, show=False, save=".pdf")
         # sc.pl.scatter(adata, x=args.count_col, y=args.percent_mito_col, show=False, save=".pdf")
         # sc.pl.scatter(adata, x=args.count_col, y=args.gene_col, show=False, save=".pdf")
