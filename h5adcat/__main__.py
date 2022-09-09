@@ -5,6 +5,7 @@ import pandas as pd
 import scipy.sparse as sp
 from h5adcat import __version__
 
+var = str(sc.logging.print_versions())
 
 def write_mtx(adata):
    #print("MTX\n")
@@ -49,7 +50,7 @@ def main():
     parser.add_argument('-v', '--version', action='version', version=__version__)
     parser.add_argument('-m', '--mtx', default=False, action='store_true', help='Convert to MTX')
     parser.add_argument('-d', '--data', default=False, action='store_true', help='Show Limited Data')
-    parser.add_argument('-s', '--session_info', default=False, action='store_true', help='Show Session Information')
+    #parser.add_argument('-s', '--session_info', default=False, action='store_true', help='Show Session Information')
     #parser.add_argument('-s', '--summary', default=False, action='store_true', help='Show Summary')
 
     #parser.add_argument('-q', '--qc', default=False, action='store_true', help='Make QC Plots')
@@ -68,7 +69,6 @@ def main():
     adata = sc.read(file)
 
     if args.session_info:
-        str(sc.logging.print_versions())
         sys.exit(0)
     
     # Display basic information
