@@ -4,43 +4,43 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 
-__version__ = "0.0.21"
+__version__ = "0.0.22"
 
 
 def write_mtx(adata):
-    print("MTX\n")
-#     """Export AnnData object to mtx format
-#     * Parameters
-#         + adata : AnnData
-#         An AnnData object
+   #print("MTX\n")
+    """Export AnnData object to mtx format
+    * Parameters
+        + adata : AnnData
+        An AnnData object
 
-#         From: https://github.com/ebi-gene-expression-group/scanpy-scripts/blob/e53693336d8b37f0231d10d672b49c766d9c325b/scanpy_scripts/cmd_utils.py
-#     """
-#     mat = sp.coo_matrix(adata.X)
+        From: https://github.com/ebi-gene-expression-group/scanpy-scripts/blob/e53693336d8b37f0231d10d672b49c766d9c325b/scanpy_scripts/cmd_utils.py
+    """
+    mat = sp.coo_matrix(adata.X)
 
-#     n_obs, n_var = mat.shape
-#     n_entry = len(mat.data)
+    n_obs, n_var = mat.shape
+    n_entry = len(mat.data)
 
-#     # Define the header lines as a Pandas DataFrame
-#     header = pd.DataFrame(
-#         ["%%MatrixMarket matrix coordinate real general", f"{n_var} {n_obs} {n_entry}"]
-#     )
-#     df = pd.DataFrame({"col": mat.col + 1, "row": mat.row + 1, "data": mat.data})
+    # Define the header lines as a Pandas DataFrame
+    header = pd.DataFrame(
+        ["%%MatrixMarket matrix coordinate real general", f"{n_var} {n_obs} {n_entry}"]
+    )
+    df = pd.DataFrame({"col": mat.col + 1, "row": mat.row + 1, "data": mat.data})
 
-#     # Define outputs
-#     mtx_fname = "matrix.mtx"
-#     gene_fname = "genes.tsv"
-#     barcode_fname = "barcodes.tsv"
+    # Define outputs
+    mtx_fname = "matrix.mtx"
+    gene_fname = "genes.tsv"
+    barcode_fname = "barcodes.tsv"
 
-#     # Write matrix with Pandas CSV
-#     header.to_csv(mtx_fname, header=False, index=False, compression=None)
-#     df.to_csv(mtx_fname, sep=" ", header=False, index=False, compression=None, mode="a")
+    # Write matrix with Pandas CSV
+    header.to_csv(mtx_fname, header=False, index=False, compression=None)
+    df.to_csv(mtx_fname, sep=" ", header=False, index=False, compression=None, mode="a")
 
-#     # Now write the obs and var
-#     obs_df = adata.obs.reset_index(level=0)
-#     obs_df.to_csv(barcode_fname, sep="\t", header=False, index=False, compression=None)
-#     var_df = adata.var.reset_index(level=0)
-#     var_df.to_csv(gene_fname, sep="\t", header=False, index=False, compression=None)
+    # Now write the obs and var
+    obs_df = adata.obs.reset_index(level=0)
+    obs_df.to_csv(barcode_fname, sep="\t", header=False, index=False, compression=None)
+    var_df = adata.var.reset_index(level=0)
+    var_df.to_csv(gene_fname, sep="\t", header=False, index=False, compression=None)
 
 
 def main():
