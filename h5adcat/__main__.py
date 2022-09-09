@@ -4,42 +4,42 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 
-__version__ = "0.0.7"
+__version__ = "0.0.8"
 
 
-def write_mtx(adata):
-    """Export AnnData object to mtx format
-    * Parameters
-        + adata : AnnData
-        An AnnData object
+# def write_mtx(adata):
+#     """Export AnnData object to mtx format
+#     * Parameters
+#         + adata : AnnData
+#         An AnnData object
 
-        From: https://github.com/ebi-gene-expression-group/scanpy-scripts/blob/e53693336d8b37f0231d10d672b49c766d9c325b/scanpy_scripts/cmd_utils.py
-    """
-    mat = sp.coo_matrix(adata.X)
+#         From: https://github.com/ebi-gene-expression-group/scanpy-scripts/blob/e53693336d8b37f0231d10d672b49c766d9c325b/scanpy_scripts/cmd_utils.py
+#     """
+#     mat = sp.coo_matrix(adata.X)
 
-    n_obs, n_var = mat.shape
-    n_entry = len(mat.data)
+#     n_obs, n_var = mat.shape
+#     n_entry = len(mat.data)
 
-    # Define the header lines as a Pandas DataFrame
-    header = pd.DataFrame(
-        ["%%MatrixMarket matrix coordinate real general", f"{n_var} {n_obs} {n_entry}"]
-    )
-    df = pd.DataFrame({"col": mat.col + 1, "row": mat.row + 1, "data": mat.data})
+#     # Define the header lines as a Pandas DataFrame
+#     header = pd.DataFrame(
+#         ["%%MatrixMarket matrix coordinate real general", f"{n_var} {n_obs} {n_entry}"]
+#     )
+#     df = pd.DataFrame({"col": mat.col + 1, "row": mat.row + 1, "data": mat.data})
 
-    # Define outputs
-    mtx_fname = "matrix.mtx"
-    gene_fname = "genes.tsv"
-    barcode_fname = "barcodes.tsv"
+#     # Define outputs
+#     mtx_fname = "matrix.mtx"
+#     gene_fname = "genes.tsv"
+#     barcode_fname = "barcodes.tsv"
 
-    # Write matrix with Pandas CSV
-    header.to_csv(mtx_fname, header=False, index=False, compression=None)
-    df.to_csv(mtx_fname, sep=" ", header=False, index=False, compression=None, mode="a")
+#     # Write matrix with Pandas CSV
+#     header.to_csv(mtx_fname, header=False, index=False, compression=None)
+#     df.to_csv(mtx_fname, sep=" ", header=False, index=False, compression=None, mode="a")
 
-    # Now write the obs and var
-    obs_df = adata.obs.reset_index(level=0)
-    obs_df.to_csv(barcode_fname, sep="\t", header=False, index=False, compression=None)
-    var_df = adata.var.reset_index(level=0)
-    var_df.to_csv(gene_fname, sep="\t", header=False, index=False, compression=None)
+#     # Now write the obs and var
+#     obs_df = adata.obs.reset_index(level=0)
+#     obs_df.to_csv(barcode_fname, sep="\t", header=False, index=False, compression=None)
+#     var_df = adata.var.reset_index(level=0)
+#     var_df.to_csv(gene_fname, sep="\t", header=False, index=False, compression=None)
 
 
 def main():
@@ -62,40 +62,39 @@ def main():
         print("h5adcat: " + __version__ + " Dependencies: " + sc.logging.print_versions())
         sys.exit(0)
 
-    if args.help:
-        parser.print_help()
-        sys.exit(0)
+    # if args.help:
+    #     parser.print_help()
+    #     sys.exit(0)
 
-    if len(sys.argv)==1:
-        parser.print_usage()
-        sys.exit(0)
+    # if len(sys.argv)==1:
+    #     parser.print_usage()
+    #     sys.exit(0)
 
-    file = args.file
+    # file = args.file
 
-    adata = sc.read(file)
+    # adata = sc.read(file)
 
-    if args.summary:
-        print(str(adata))
+    # if args.summary:
+    #     print(str(adata))
 
-    if args.mtx:
-        write_mtx(adata)
+    # if args.mtx:
+    #     write_mtx(adata)
 
-    if args.qc:
-        sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".pdf") 
-        sc.pl.violin(adata, [args.gene_col, args.count_col, args.percent_mito_col], jitter=0.4, multi_panel=True, show=False, save=".pdf")
-        sc.pl.scatter(adata, x=args.count_col, y=args.percent_mito_col, show=False, save=".pdf")
-        sc.pl.scatter(adata, x=args.count_col, y=args.gene_col, show=False, save=".pdf")
+    # if args.qc:
+    #     sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".pdf") 
+    #     sc.pl.violin(adata, [args.gene_col, args.count_col, args.percent_mito_col], jitter=0.4, multi_panel=True, show=False, save=".pdf")
+    #     sc.pl.scatter(adata, x=args.count_col, y=args.percent_mito_col, show=False, save=".pdf")
+    #     sc.pl.scatter(adata, x=args.count_col, y=args.gene_col, show=False, save=".pdf")
 
-    if args.data: 
-        print("X:\n")
-        print(pd.DataFrame.sparse.from_spmatrix(adata.X).head(5))
+    # if args.data: 
+    #     print("X:\n")
+    #     print(pd.DataFrame.sparse.from_spmatrix(adata.X).head(5))
 
-        print("\nobs:\n")
-        print(adata.obs.head(5))
+    #     print("\nobs:\n")
+    #     print(adata.obs.head(5))
 
-        print("\nvar:\n")
-        print(adata.var.head(5))
-
+    #     print("\nvar:\n")
+    #     print(adata.var.head(5))
 
 
 if __name__ == "__main__":
