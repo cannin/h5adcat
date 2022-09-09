@@ -4,7 +4,7 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 
-__version__ = "0.0.13"
+__version__ = "0.0.14"
 
 
 # def write_mtx(adata):
@@ -67,9 +67,9 @@ def main():
         print(sc.logging.print_versions())
         sys.exit(0)
 
-    if args.help:
-        parser.print_help()
-        sys.exit(0)
+    # if args.help:
+    #     parser.print_help()
+    #     sys.exit(0)
 
     file = args.file
 
