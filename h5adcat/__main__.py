@@ -76,7 +76,7 @@ def main():
     adata = sc.read(file)
     
     # Display basic information
-    if not args.mtx and not args.qc
+    if not args.mtx and not args.qc:
     print(str(adata) + "\n")
 
     # if args.mtx:
