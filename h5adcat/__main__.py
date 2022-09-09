@@ -4,7 +4,7 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 
-__version__ = "0.0.14"
+__version__ = "0.0.15"
 
 
 # def write_mtx(adata):
@@ -88,13 +88,13 @@ def main():
         sc.pl.scatter(adata, x=args.count_col, y=args.gene_col, show=False, save=".pdf")
 
     if args.data: 
-        print("X:\n")
+        print("X Head:\n")
         print(pd.DataFrame.sparse.from_spmatrix(adata.X).head(5))
 
-        print("\nobs:\n")
+        print("\nobs Head:\n")
         print(adata.obs.head(5))
 
-        print("\nvar:\n")
+        print("\nvar Head:\n")
         print(adata.var.head(5))
 
 
