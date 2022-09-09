@@ -4,8 +4,14 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 from h5adcat import __version__
+import io
+from contextlib import redirect_stdout
 
-var = str(sc.logging.print_versions())
+s = io.StringIO()
+with redirect_stdout(s):
+    sc.logging.print_versions()
+__version_str__ = "h5adcat: " + __version__ + " TMP: " + f.getvalue()
+
 
 def write_mtx(adata):
    #print("MTX\n")
@@ -47,7 +53,7 @@ def main():
     parser = argparse.ArgumentParser(description="Basic Information for .h5ad Files and Conversion to MTX")
 
     parser.add_argument('file', help='Input .h5ad File')
-    parser.add_argument('-v', '--version', action='version', version=__version__)
+    parser.add_argument('-v', '--version', action='version', version=__version_str__)
     parser.add_argument('-m', '--mtx', default=False, action='store_true', help='Convert to MTX')
     parser.add_argument('-d', '--data', default=False, action='store_true', help='Show Limited Data')
     #parser.add_argument('-s', '--session_info', default=False, action='store_true', help='Show Session Information')
@@ -67,9 +73,6 @@ def main():
     file = args.file
 
     adata = sc.read(file)
-
-    if args.session_info:
-        sys.exit(0)
     
     # Display basic information
     if not args.mtx and not args.data:
