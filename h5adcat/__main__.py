@@ -4,10 +4,11 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 
-__version__ = "0.0.19"
+__version__ = "0.0.20"
 
 
-# def write_mtx(adata):
+def write_mtx(adata):
+    print("MTX\n")
 #     """Export AnnData object to mtx format
 #     * Parameters
 #         + adata : AnnData
@@ -49,7 +50,7 @@ def main():
     #parser.add_argument('-s', '--summary', default=False, action='store_true', help='Show Summary')
     parser.add_argument('-v', '--version', default=False, action='store_true', help='Show Version')
     parser.add_argument('-m', '--mtx', default=False, action='store_true', help='Convert to MTX')
-    parser.add_argument('-q', '--qc', default=False, action='store_true', help='Make QC Plots')
+    #parser.add_argument('-q', '--qc', default=False, action='store_true', help='Make QC Plots')
     parser.add_argument('-d', '--data', default=False, action='store_true', help='Show Limited Data')
 
     parser.add_argument('-c', '--count_col', default='ncounts', help='N Count Column')
@@ -82,11 +83,11 @@ def main():
     # if args.mtx:
     #     write_mtx(adata)
 
-    if args.qc:
-        sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".pdf") 
-        sc.pl.violin(adata, [args.gene_col, args.count_col, args.percent_mito_col], jitter=0.4, multi_panel=True, show=False, save=".pdf")
-        sc.pl.scatter(adata, x=args.count_col, y=args.percent_mito_col, show=False, save=".pdf")
-        sc.pl.scatter(adata, x=args.count_col, y=args.gene_col, show=False, save=".pdf")
+    # if args.qc:
+    #     sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".pdf") 
+    #     sc.pl.violin(adata, [args.gene_col, args.count_col, args.percent_mito_col], jitter=0.4, multi_panel=True, show=False, save=".pdf")
+    #     sc.pl.scatter(adata, x=args.count_col, y=args.percent_mito_col, show=False, save=".pdf")
+    #     sc.pl.scatter(adata, x=args.count_col, y=args.gene_col, show=False, save=".pdf")
 
     if args.data: 
         print("X Head:\n")
