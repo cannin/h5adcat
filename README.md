@@ -1,6 +1,6 @@
 # Introduction
 
-Basic Information for .h5ad Files and Conversion to MTX
+Basic Information for single-cell RNAseq (scRNAseq) .h5ad Files and Conversion to MTX
 
 # Installation 
 
