@@ -51,7 +51,7 @@ def write_mtx(adata):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Basic Information for .h5ad Files and Conversion to MTX", formatter_class=RawTextHelpFormatter)
+    parser = argparse.ArgumentParser(description="Basic Information for single-cell RNAseq (scRNAseq) .h5ad Files and Conversion to MTX", formatter_class=RawTextHelpFormatter)
 
     parser.add_argument('file', help='Input .h5ad File')
     parser.add_argument('-v', '--version', action='version', version=__version_str__)
