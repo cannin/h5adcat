@@ -4,7 +4,7 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 
-__version__ = "0.0.8"
+__version__ = "0.0.9"
 
 
 # def write_mtx(adata):
