@@ -3,9 +3,6 @@ import argparse
 import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
-from h5adcat import __version__
-
-__version_str__ = str(sc.logging.print_versions())
 
 
 def write_mtx(adata):
@@ -48,7 +45,7 @@ def main():
     parser = argparse.ArgumentParser(description="Basic Information for .h5ad Files and Conversion to MTX")
 
     parser.add_argument('file', help='Input .h5ad File')
-    parser.add_argument('-v', '--version', action='version', version=__version_str__)
+    parser.add_argument('-v', '--version', action='version', version=str(sc.logging.print_versions()))
     parser.add_argument('-m', '--mtx', default=False, action='store_true', help='Convert to MTX')
     parser.add_argument('-d', '--data', default=False, action='store_true', help='Show Limited Data')
     #parser.add_argument('-s', '--summary', default=False, action='store_true', help='Show Summary')
