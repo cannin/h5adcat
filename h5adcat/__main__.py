@@ -10,7 +10,7 @@ from contextlib import redirect_stdout
 s = io.StringIO()
 with redirect_stdout(s):
     sc.logging.print_versions()
-__version_str__ = "h5adcat: " + __version__ + "\nDependencies:\n" + s.getvalue()
+__version_str__ = "Session Info:\n" + s.getvalue()
 
 
 def write_mtx(adata):
@@ -50,7 +50,7 @@ def write_mtx(adata):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Basic Information for .h5ad Files and Conversion to MTX")
+    parser = argparse.ArgumentParser(description="Basic Information for .h5ad Files and Conversion to MTX", formatter_class=RawTextHelpFormatter)
 
     parser.add_argument('file', help='Input .h5ad File')
     parser.add_argument('-v', '--version', action='version', version=__version_str__)
