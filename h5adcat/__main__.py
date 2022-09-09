@@ -10,7 +10,7 @@ from contextlib import redirect_stdout
 s = io.StringIO()
 with redirect_stdout(s):
     sc.logging.print_versions()
-__version_str__ = "h5adcat: " + __version__ + " TMP: " + f.getvalue()
+__version_str__ = "h5adcat: " + __version__ + "\nDependencies:\n" + s.getvalue()
 
 
 def write_mtx(adata):
