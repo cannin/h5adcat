@@ -4,7 +4,7 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 
-__version__ = "0.0.12"
+__version__ = "0.0.13"
 
 
 # def write_mtx(adata):
@@ -57,7 +57,7 @@ def main():
     parser.add_argument('-p', '--percent_mito_col', default='percent_mito', help='Percent Mitochondrion Column')
 
     if len(sys.argv)==1:
-        parser.print_usage()
+        parser.print_help() # Usage is too simplistic
         sys.exit(0)
 
     args = parser.parse_args()
