@@ -4,7 +4,7 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 
-__version__ = "0.0.20"
+__version__ = "0.0.21"
 
 
 def write_mtx(adata):
@@ -80,8 +80,8 @@ def main():
     if not args.mtx and not args.qc:
         print(str(adata) + "\n")
 
-    # if args.mtx:
-    #     write_mtx(adata)
+    if args.mtx:
+        write_mtx(adata)
 
     # if args.qc:
     #     sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".pdf") 
