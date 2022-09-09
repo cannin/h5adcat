@@ -56,26 +56,26 @@ def main():
     parser.add_argument('-g', '--gene_col', default='ngenes', help='N Genes Column')
     parser.add_argument('-p', '--percent_mito_col', default='percent_mito', help='Percent Mitochondrion Column')
 
+    if len(sys.argv)==1:
+        parser.print_usage()
+        sys.exit(0)
+
     args = parser.parse_args()
 
     if args.version:
         print("h5adcat: " + __version__ + " Dependencies: " + sc.logging.print_versions())
         sys.exit(0)
 
-    # if args.help:
-    #     parser.print_help()
-    #     sys.exit(0)
+    if args.help:
+        parser.print_help()
+        sys.exit(0)
 
-    # if len(sys.argv)==1:
-    #     parser.print_usage()
-    #     sys.exit(0)
+    file = args.file
 
-    # file = args.file
+    adata = sc.read(file)
 
-    # adata = sc.read(file)
-
-    # if args.summary:
-    #     print(str(adata))
+    if args.summary:
+        print(str(adata))
 
     # if args.mtx:
     #     write_mtx(adata)
