@@ -4,7 +4,7 @@ import scanpy as sc
 import pandas as pd
 import scipy.sparse as sp
 
-__version__ = "0.0.11"
+__version__ = "0.0.12"
 
 
 # def write_mtx(adata):
@@ -63,7 +63,7 @@ def main():
     args = parser.parse_args()
 
     if args.version:
-        print("h5adcat: " + __version__ + " Dependencies: ")
+        print("h5adcat: " + __version__ + "\n\nDependencies: ")
         print(sc.logging.print_versions())
         sys.exit(0)
 
@@ -81,21 +81,21 @@ def main():
     # if args.mtx:
     #     write_mtx(adata)
 
-    # if args.qc:
-    #     sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".pdf") 
-    #     sc.pl.violin(adata, [args.gene_col, args.count_col, args.percent_mito_col], jitter=0.4, multi_panel=True, show=False, save=".pdf")
-    #     sc.pl.scatter(adata, x=args.count_col, y=args.percent_mito_col, show=False, save=".pdf")
-    #     sc.pl.scatter(adata, x=args.count_col, y=args.gene_col, show=False, save=".pdf")
+    if args.qc:
+        sc.pl.highest_expr_genes(adata, n_top=10, show=False, save=".pdf") 
+        sc.pl.violin(adata, [args.gene_col, args.count_col, args.percent_mito_col], jitter=0.4, multi_panel=True, show=False, save=".pdf")
+        sc.pl.scatter(adata, x=args.count_col, y=args.percent_mito_col, show=False, save=".pdf")
+        sc.pl.scatter(adata, x=args.count_col, y=args.gene_col, show=False, save=".pdf")
 
-    # if args.data: 
-    #     print("X:\n")
-    #     print(pd.DataFrame.sparse.from_spmatrix(adata.X).head(5))
+    if args.data: 
+        print("X:\n")
+        print(pd.DataFrame.sparse.from_spmatrix(adata.X).head(5))
 
-    #     print("\nobs:\n")
-    #     print(adata.obs.head(5))
+        print("\nobs:\n")
+        print(adata.obs.head(5))
 
-    #     print("\nvar:\n")
-    #     print(adata.var.head(5))
+        print("\nvar:\n")
+        print(adata.var.head(5))
 
 
 if __name__ == "__main__":
