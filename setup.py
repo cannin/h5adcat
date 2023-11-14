@@ -8,7 +8,7 @@ import os
 from setuptools import find_packages, setup
 from h5adcat import __version__
 
-DEPENDENCIES = ['scanpy==1.9.1']
+DEPENDENCIES = ['scanpy==1.9.6']
 EXCLUDE_FROM_PACKAGES = ["contrib", "docs", "test*"]
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 
