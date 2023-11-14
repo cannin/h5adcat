@@ -72,7 +72,7 @@ def main():
 
     file = args.file
 
-    adata = sc.read(file)
+    adata = sc.read_h5ad(file)
     
     # Display basic information
     if not args.mtx and not args.data:
