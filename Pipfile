@@ -7,7 +7,7 @@ name = "pypi"
 ipython = "*"
 
 [packages]
-scanpy = "1.9.1"
+scanpy = "1.9.6"
 
 [requires]
-python_version = "3.8"
+python_version = "3.11"
